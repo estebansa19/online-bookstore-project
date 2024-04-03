@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '3.3.0'
 
+gem 'pry-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.2'
 
@@ -47,8 +49,11 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem 'image_processing', '~> 1.2'
 
-# Use devise for authentication
+# Use Devise for authentication
 gem 'devise', '~> 4.9', '>= 4.9.3'
+
+# Use Pagy for pagination
+gem 'pagy', '~> 8.0', '>= 8.0.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
