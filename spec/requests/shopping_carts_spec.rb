@@ -5,7 +5,7 @@ RSpec.describe 'ShoppingCarts', type: :request do
     it 'renders the flash message' do
       request
 
-      expect(response.body).to include(flash_message)
+      expect(flash[:alert]).to eq(flash_message)
     end
   end
 

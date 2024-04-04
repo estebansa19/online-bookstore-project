@@ -1,0 +1,69 @@
+<div class="bg-gray-800 px-7 py-7 text-white text-3xl">
+  <%= link_to 'Create',
+              new_admin_book_path,
+              class: 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none
+                     focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                     cursor-pointer' %>
+</div>
+
+<div class="relative overflow-x-auto shadow-md">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Title
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Author
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Description
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Price
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Pages number
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Stock quantity
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @records.each do |book| %>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <%= book.title %>
+        </th>
+        <td class="px-6 py-4">
+          <%= book.author %>
+        </td>
+        <td class="px-6 py-4">
+          <%= book.description %>
+        </td>
+        <td class="px-6 py-4">
+          <%= book.price %>
+        </td>
+        <td class="px-6 py-4">
+          <%= book.pages_number %>
+        </td>
+        <td class="px-6 py-4">
+          <%= book.stock_quantity %>
+        </td>
+        <td class="flex items-center px-6 py-4">
+          <%= link_to 'Edit', edit_admin_book_path(book), class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+          <%= link_to 'Remove', admin_book_path(book), data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline ms-3' %>
+        </td>
+      </tr>
+    <% end%>
+    </tbody>
+  </table>
+</div>
+
+<div class="text-center bg-gray-800 px-7 py-7 text-white text-3xl">
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+</div>

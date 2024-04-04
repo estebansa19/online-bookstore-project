@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   namespace :shopping_carts do
     resources :books, only: %i[create destroy]
   end
+
+  namespace :admin do
+    resources :books, except: %i[show]
+  end
 end

@@ -6,7 +6,7 @@ class ShoppingCarts::BooksController < ApplicationController
     if @book.stock_quantity > 0
       shopping_cart.books << @book
     else
-      render_flash_message('alert', 'This book is out of stock :(')
+      turbo_flash_message('alert', 'This book is out of stock :(')
     end
   end
 
