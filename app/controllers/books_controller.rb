@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: :show
 
   def index
-    @pagy, @records = pagy(Book.all)
+    @pagy, @records = pagy(Book.order(:title))
   end
 
   def show
