@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShoppingCartsController < ApplicationController
   before_action :authenticate_user
   before_action :set_shopping_cart, only: %i[show update]
@@ -8,6 +10,8 @@ class ShoppingCartsController < ApplicationController
     end
   end
 
+  # The logic inside this action is really small but it should be in a service object, the model,
+  # a PORO, etc.
   def update
     ActiveRecord::Base.transaction do
       @shopping_cart.books.each { |book| book.decrement!(:stock_quantity, 1) }

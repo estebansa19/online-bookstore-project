@@ -32,7 +32,13 @@
               </div>
               <% if @shopping_cart.in_progress? %>
                 <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  <%= link_to 'X', shopping_carts_book_path(id: book.id), data: { 'turbo-method': :delete }, class: 'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 ml-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'  %>
+                  <%= link_to 'X',
+                              shopping_carts_book_path(id: book.id),
+                              data: { 'turbo-method': :delete },
+                              class: 'focus:outline-none text-white bg-red-700 hover:bg-red-800
+                                     focus:ring-4 focus:ring-red-300 font-medium rounded-lg
+                                    text-sm px-2 py-2 ml-2 dark:bg-red-600 dark:hover:bg-red-700
+                                    dark:focus:ring-red-900'  %>
                 </div>
               <% end %>
             </div>
@@ -55,11 +61,16 @@
 
       <div class="mt-5">
         <% if @shopping_cart.completed? %>
-          <h3 class="text-white">Your order will be delivedered soon!</h3>
+          <h3 class="text-white">Your order will be delivered soon!</h3>
         <% elsif @shopping_cart.books.empty? %>
           <h3 class="text-white">You should add some items to continue to the checkout!</h3>
         <% else %>
-          <%= link_to 'Checkout', shopping_cart_path(@shopping_cart.id), data: { 'turbo-method': :put }, class: 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer' %>
+          <%= link_to 'Checkout',
+                      shopping_cart_path(@shopping_cart.id),
+                      data: { 'turbo-method': :put },
+                      class: 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-4
+                             focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm
+                             px-5 py-2.5 text-center cursor-pointer' %>
         <% end %>
       </div>
     </div>
