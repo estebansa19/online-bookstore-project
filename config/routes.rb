@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :books, only: %i[index show]
 
-  resources :shopping_carts, only: %i[show update]
+  resources :orders, only: %i[show update]
+  get '/cart', to: 'orders#cart'
 
-  namespace :shopping_carts do
+  namespace :orders do
     resources :books, only: %i[create destroy]
   end
 

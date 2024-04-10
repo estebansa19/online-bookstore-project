@@ -10,7 +10,7 @@ export default class extends Controller {
     const token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     const data = { id: event.params.id };
 
-    fetch("/shopping_carts/books", {
+    fetch("/orders/books", {
       method: "POST",
       headers: {
         Accept: "text/vnd.turbo-stream.html",

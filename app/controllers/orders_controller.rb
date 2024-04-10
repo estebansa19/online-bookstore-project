@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class ShoppingCartsController < ApplicationController
+class OrdersController < ApplicationController
   before_action :authenticate_user
-  before_action :set_shopping_cart, only: %i[show update]
+  before_action :set_order, only: %i[show update]
+
+  def cart
+    @shopping_cart = current_user.shopping_cart
+  end
 
   def show
-    if @shopping_cart.user_id != current_user.id
+    if @order.user_id != current_user.id
       redirect_to root_path, flash: { alert: 'Unauthorized' }
     end
   end
@@ -14,18 +18,18 @@ class ShoppingCartsController < ApplicationController
   # a PORO, etc.
   def update
     ActiveRecord::Base.transaction do
-      @shopping_cart.books.each { |book| book.decrement!(:stock_quantity, 1) }
-      @shopping_cart.completed!
+      @order.books.each { |book| book.decrement!(:stock_quantity, 1) }
+      @order.completed!
     end
 
-    redirect_to shopping_cart_path(@shopping_cart)
+    redirect_to order_path(@order)
   rescue ActiveRecord::RecordInvalid
     render_flash_message('alert', 'Your purchase could not be processed')
   end
 
   private
 
-  def set_shopping_cart
-    @shopping_cart = Order.find(params[:id])
+  def set_order
+    @order = Order.find(params[:id])
   end
 end

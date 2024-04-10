@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'ShoppingCarts::Books', type: :request do
+RSpec.describe 'Orders::Books', type: :request do
   shared_examples 'a response with a flash message' do
     it 'renders the flash message' do
       request
@@ -13,7 +13,7 @@ RSpec.describe 'ShoppingCarts::Books', type: :request do
 
   describe 'POST /create' do
     subject(:request) do
-      post '/shopping_carts/books', params: { id: book_id }.to_json, headers: {
+      post '/orders/books', params: { id: book_id }.to_json, headers: {
         'Accept' => 'text/vnd.turbo-stream.html',
         'Content-Type' => 'application/json'
       }
@@ -63,7 +63,7 @@ RSpec.describe 'ShoppingCarts::Books', type: :request do
 
   describe 'DELETE /delete' do
     subject(:request) do
-      delete "/shopping_carts/books/#{book_id}", headers: {
+      delete "/orders/books/#{book_id}", headers: {
         'Accept' => 'text/vnd.turbo-stream.html',
         'Content-Type' => 'application/json'
       }

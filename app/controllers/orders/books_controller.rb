@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-module ShoppingCarts
+module Orders
   class BooksController < ApplicationController
     before_action :authenticate_user
     before_action :set_book, only: %i[create]
 
     def create
       if @book.stock_quantity > 0
-        shopping_cart.books << @book
+        order.books << @book
       else
         turbo_flash_message('alert', 'This book is out of stock :(')
       end
     end
 
     def destroy
-      shopping_cart.orders_books.find_by!(book_id: params[:id]).destroy
+      order.orders_books.find_by!(book_id: params[:id]).destroy
 
-      redirect_to shopping_cart_path(shopping_cart), flash: { alert: 'Book removed' }
+      redirect_to cart_path, flash: { alert: 'Book removed' }
     end
 
     private
 
-    def shopping_cart
-      @shopping_cart ||= current_user.shopping_cart
+    def order
+      @order ||= current_user.shopping_cart
     end
 
     def set_book
